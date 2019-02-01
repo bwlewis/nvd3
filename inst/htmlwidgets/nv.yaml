@@ -1,0 +1,7 @@
+dependencies:
+  - name: nvd3
+    version: 186
+    src: "htmlwidgets/lib/"
+    script:
+      - d3.v3.min.js
+      - nv.d3.min.js
