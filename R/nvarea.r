@@ -26,7 +26,7 @@
 #'              format(as.POSIXct(x, origin="1970-1-1"), "%Y-%m-%d"))
 #'
 #' @export
-nvareaplot = function(x, nxticks=10, xticklabels=NULL, ytickformat=",.1f", interpolate=c("step", "linear", "basis"),
+nvareaplot = function(x, nxticks=10, xticklabels=NULL, ytickformat=",.1f", interpolate=c("step", "linear", "basis", "step-before", "step-after", "bundle", "cardinal", "monotone"),
                       controls=FALSE, xlim, ylim, tooltip, options)
 {
   if(nrow(x) != length(unique(x[[1]]))) warning("non-unique entries in the x-axis values from first column of x (consider adding columns to represent the extra values)")
