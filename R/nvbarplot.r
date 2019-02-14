@@ -104,13 +104,13 @@ nv.addGraph(function() {
 
 #' @rdname nvd3-shiny
 #' @export
-nvbarplotOutput <- function(outputId, width="100%", height="600px") {
+nvOutput <- function(outputId, width="100%", height="600px") {
     shinyWidgetOutput(outputId, "nv", width, height, package = "nvd3")
 }
 
-#' @rdname nvd3-shiny
+#' rendernvbarplot
 #' @export
 rendernvbarplot <- function(expr, env = parent.frame(), quoted = FALSE) {
     if (!quoted) expr <- substitute(expr) # force quoted
-    shinyRenderWidget(expr, nvbarplotOutput, env, quoted = TRUE)
+    shinyRenderWidget(expr, nvOutput, env, quoted = TRUE)
 }

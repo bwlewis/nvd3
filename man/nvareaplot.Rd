@@ -5,8 +5,9 @@
 \title{nv stacked area plot}
 \usage{
 nvareaplot(x, nxticks = 10, xticklabels = NULL, ytickformat = ",.1f",
-  interpolate = c("step", "linear", "basis"), controls = FALSE, xlim, ylim,
-  tooltip, options)
+  interpolate = c("step", "linear", "basis", "step-before", "step-after",
+  "bundle", "cardinal", "monotone"), controls = FALSE, xlim, ylim, tooltip,
+  options)
 }
 \arguments{
 \item{x}{a data frame with at least two columns whose first column contains

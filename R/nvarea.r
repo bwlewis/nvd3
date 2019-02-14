@@ -104,3 +104,13 @@ nv.addGraph(function() {
 
   nvd3(program)
 }
+
+
+#' rendernvareaplot
+#'
+#' @export
+rendernvareaplot <- function(expr, env = parent.frame(), quoted = FALSE) {
+    if (!quoted) expr <- substitute(expr) # force quoted
+    shinyRenderWidget(expr, nvOutput, env, quoted = TRUE)
+}
+
