@@ -7,7 +7,8 @@
 nv_area(x, yAxis = 1)
 }
 \arguments{
-\item{x}{something tricky}
+\item{x}{a matrix with at least 2 columns whose first column contains x-coordinate values
+and remaining columns series y-coordinate values}
 
 \item{yAxis}{which y-Axis to use}
 }

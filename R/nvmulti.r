@@ -42,7 +42,8 @@ nv_bar = function(x, yAxis=1)
 
 #' nv_area
 #'
-#' @param x something tricky
+#' @param x a matrix with at least 2 columns whose first column contains x-coordinate values
+#'        and remaining columns series y-coordinate values
 #' @param yAxis which y-Axis to use
 #' @export
 nv_area = function(x, yAxis=1)
@@ -82,6 +83,10 @@ nv_area = function(x, yAxis=1)
 #' @param xticklabels optional, either a character-valued function of a single numeric value
 #'  that converts x-axis values to text, or a vector of labels as long as \code{nxticks}.
 #' @importFrom jsonlite toJSON
+#' @examples
+#' area = nv_area(cbind(seq(nrow(iris)), iris[, -5]))
+#' total = nv_coords(x=seq(nrow(iris)), y=apply(iris[, -5], 1, sum), type="line", key="TOTAL")
+#' print(nvmulti(area, total, nxticks=11, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
 #' @export
 nvmulti = function(..., tooltip=FALSE, guideline=TRUE, 
 interpolate=c("linear", "step", "basis", "step-before", "step-after", "bundle", "cardinal", "monotone"),
