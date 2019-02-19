@@ -20,7 +20,7 @@ that converts x-axis values to text, or a vector of labels as long as \code{nxti
 
 \item{ytickformat}{format numeric tick labels using a d3.format string (d3.js)}
 
-\item{interpolate}{d3.js plot interpolation option, either 'step', 'linear', or 'basis.'}
+\item{interpolate}{d3.js plot interpolation option}
 
 \item{controls}{(logical), if \code{TRUE} then show optional interactive plot format controls}
 

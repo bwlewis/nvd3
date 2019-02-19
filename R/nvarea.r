@@ -6,7 +6,7 @@
 #' @param xticklabels either a character-valued function of a single numeric value
 #'  that converts x-axis values to text, or a vector of labels as long as \code{nxticks}.
 #' @param ytickformat format numeric tick labels using a d3.format string (d3.js)
-#' @param interpolate d3.js plot interpolation option, either 'step', 'linear', or 'basis.'
+#' @param interpolate d3.js plot interpolation option
 #' @param controls (logical), if \code{TRUE} then show optional interactive plot format controls
 #' @param xlim an optional numeric vector of two values of lower and upper x-axis limits
 #' @param ylim an optional numeric vector of two values of lower and upper y-axis limits
@@ -90,10 +90,10 @@ var chart = nv.models.stackedAreaChart()
 %s
 nv.addGraph(function() {
   %s%s
-  chart.xAxis.tickValues(xtick_index).ticks(xtick_index.length).tickFormat(function (d) { return xticks[d];});
   if(ylim) chart.yDomain(ylim);
   if(xlim) chart.xDomain(xlim);
   chart.yAxis.tickFormat(d3.format('%s'));
+  chart.xAxis.tickValues(xtick_index).ticks(xtick_index.length).tickFormat(function (d) { return xticks[d];});
   if(tooltip)  chart.interactiveLayer.tooltip.contentGenerator(function (d) { return tooltip[d.value]; });
   d3.select(_this.svg)
       .datum(rdata)
@@ -104,13 +104,3 @@ nv.addGraph(function() {
 
   nvd3(program)
 }
-
-
-#' rendernvareaplot
-#'
-#' @export
-rendernvareaplot <- function(expr, env = parent.frame(), quoted = FALSE) {
-    if (!quoted) expr <- substitute(expr) # force quoted
-    shinyRenderWidget(expr, nvOutput, env, quoted = TRUE)
-}
-
