@@ -42,13 +42,14 @@ nv_bar = function(x, yAxis=1)
 
 #' nv_area
 #'
-#' @param x a matrix with at least 2 columns whose first column contains x-coordinate values
+#' @param x a numeric matrix with at least 2 columns whose first column contains x-coordinate values
 #'        and remaining columns series y-coordinate values
-#' @param yAxis which y-Axis to use
+#' @param yAxis which y-Axis to use (1 or 2)
 #' @export
 nv_area = function(x, yAxis=1)
 {
   if(!is.matrix(x)) x = cbind(x)
+  if(!is.numeric(x)) stop("x must be a numeric matrix")
   if(ncol(x) > 1) {
     i = x[, 1]
     x = x[, -1, drop=FALSE]
@@ -78,19 +79,19 @@ nv_area = function(x, yAxis=1)
 #' @param xlim an optional numeric vector of two values of lower and upper x-axis limits
 #' @param ylim1 an optional numeric vector of two values of lower and upper left y-axis limits
 #' @param ylim2 an optional numeric vector of two values of lower and upper right y-axis limits
-#' @param nxticks number of x tick marks, set to 0 for none.
 #' @param col optional colors, one for each series
-#' @param xticklabels optional, either a character-valued function of a single numeric value
-#'  that converts x-axis values to text, or a vector of labels as long as \code{nxticks}.
+#' @param xformat function that converts numeric x-axis values to text
+#' @param xticks optional numeric vector of x tick locations
 #' @importFrom jsonlite toJSON
 #' @examples
 #' area = nv_area(cbind(seq(nrow(iris)), iris[, -5]))
 #' total = nv_coords(x=seq(nrow(iris)), y=apply(iris[, -5], 1, sum), type="line", key="TOTAL")
-#' print(nvmulti(area, total, nxticks=11, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
+#' print(nvmulti(area, total, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
 #' @export
 nvmulti = function(..., tooltip=FALSE, guideline=TRUE, 
 interpolate=c("linear", "step", "basis", "step-before", "step-after", "bundle", "cardinal", "monotone"),
-nxticks=10, col, xlim, ylim1, ylim2, xticklabels, options="")
+xformat = function(x) sprintf("%d", x),
+xticks, col, xlim, ylim1, ylim2, options="")
 {
   interpolate = match.arg(interpolate)
   tooltip = ifelse(tooltip, "true", "false")
@@ -99,17 +100,15 @@ nxticks=10, col, xlim, ylim1, ylim2, xticklabels, options="")
   c11 = c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#fdb462", "#b3de69",
           "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f")
   if(missing(col)) col = rep(c11, length.out=length(objects))
-  if(nxticks < 2) nxticks = 2 # XXX FIX
-  if(missing(xlim)) {
-    xlim = range(unlist(Map(function(x) range(x$values$x), objects)))
-  }
-  i = seq(from=xlim[1], to=xlim[2], length.out=nxticks)
-  xticks = as.list(i)
-  if(!missing(xticklabels)) {
-    if(is.function(xticklabels)) xticks = Map(xticklabels, i)
-    else xticks = as.list(xticklabels)
-  }
-  xtick_index = i
+  # make sure x-coordinates are numeric
+  for(x in objects) x$values$x = as.numeric(x$values$x)
+  xvals = unlist(Map(function(x) x$values$x, objects))
+  if(missing(xlim)) xlim = range(xvals)
+  if(missing(xticks)) xticks = pretty(xlim)
+  xvals = sort(c(xticks, xvals), decreasing=FALSE)
+  # map labels to x-axis values
+  xlabels = unlist(Map(xformat, xvals))
+
   if(missing(ylim1)) {
     ylim1 = range(unlist(Map(function(x) {
       if(x$yAxis == 1) {
@@ -133,8 +132,8 @@ nxticks=10, col, xlim, ylim1, ylim2, xticklabels, options="")
   options = sprintf("chart.xAxis.domain(%s);%s", toJSON(xlim), options)
   options = sprintf("%s;chart.yDomain1(%s);", options, toJSON(ylim1))
   options = sprintf("%s;chart.yDomain2(%s);", options, toJSON(ylim2))
-  data = sprintf("var rdata=%s;\nvar xticks=%s;\nvar xtick_index=%s;\n",
-             toJSON(objects, auto_unbox=TRUE), toJSON(xticks, auto_unbox=TRUE), toJSON(xtick_index))
+  data = sprintf("var rdata=%s;\nvar xticks=%s;\nvar xvals=%s;\nvar xlabels=%s;\n",
+             toJSON(objects, auto_unbox=TRUE), toJSON(xticks, auto_unbox=TRUE), toJSON(xvals), toJSON(xlabels))
   program = sprintf("
 %s
 nv.addGraph(function() {
@@ -143,9 +142,9 @@ nv.addGraph(function() {
                 .color(%s);
   chart.yAxis1.tickFormat(d3.format(',.1f'));
   chart.yAxis2.tickFormat(d3.format(',.1f'));
-  chart.xAxis.tickValues(xtick_index)
-             .ticks(xtick_index.length)
-             .tickFormat(function (d) {ans = xticks[xtick_index.indexOf(d)]; if(ans) {return ans}; return d;});
+  chart.xAxis.tickValues(xticks)
+             .ticks(xticks.length)
+             .tickFormat(function (d) {console.log(d); ans = xlabels[xvals.indexOf(d)]; if(ans) {return ans}; return d;});
   chart.interpolate('%s');
   chart.tooltip.enabled(%s);
   %s

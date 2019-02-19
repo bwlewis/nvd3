@@ -7,8 +7,8 @@ Overylay scatter, line, bar, and stacked area plots on one or two vertical axes.
 \usage{
 nvmulti(..., tooltip = FALSE, guideline = TRUE, interpolate = c("linear",
   "step", "basis", "step-before", "step-after", "bundle", "cardinal",
-  "monotone"), nxticks = 10, col, xlim, ylim1, ylim2, xticklabels,
-  options = "")
+  "monotone"), xformat = function(x) sprintf("\%d", x), xticks, col, xlim,
+  ylim1, ylim2, options = "")
 }
 \arguments{
 \item{...}{\code{nv_coords}, \code{nv_bar}, and/or \code{nv_area} objects to plot.}
@@ -19,7 +19,9 @@ nvmulti(..., tooltip = FALSE, guideline = TRUE, interpolate = c("linear",
 
 \item{interpolate}{d3.js plot interpolation option}
 
-\item{nxticks}{number of x tick marks, set to 0 for none.}
+\item{xformat}{function that converts numeric x-axis values to text}
+
+\item{xticks}{optional numeric vector of x tick locations}
 
 \item{col}{optional colors, one for each series}
 
@@ -28,9 +30,6 @@ nvmulti(..., tooltip = FALSE, guideline = TRUE, interpolate = c("linear",
 \item{ylim1}{an optional numeric vector of two values of lower and upper left y-axis limits}
 
 \item{ylim2}{an optional numeric vector of two values of lower and upper right y-axis limits}
-
-\item{xticklabels}{optional, either a character-valued function of a single numeric value
-that converts x-axis values to text, or a vector of labels as long as \code{nxticks}.}
 
 \item{options}{advanced JavaScript options}
 }
@@ -41,6 +40,6 @@ Overylay scatter, line, bar, and stacked area plots on one or two vertical axes.
 \examples{
 area = nv_area(cbind(seq(nrow(iris)), iris[, -5]))
 total = nv_coords(x=seq(nrow(iris)), y=apply(iris[, -5], 1, sum), type="line", key="TOTAL")
-print(nvmulti(area, total, nxticks=11, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
+print(nvmulti(area, total, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
 }
 

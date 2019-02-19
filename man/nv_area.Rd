@@ -7,10 +7,10 @@
 nv_area(x, yAxis = 1)
 }
 \arguments{
-\item{x}{a matrix with at least 2 columns whose first column contains x-coordinate values
+\item{x}{a numeric matrix with at least 2 columns whose first column contains x-coordinate values
 and remaining columns series y-coordinate values}
 
-\item{yAxis}{which y-Axis to use}
+\item{yAxis}{which y-Axis to use (1 or 2)}
 }
 \description{
 nv_area
