@@ -144,7 +144,7 @@ nv.addGraph(function() {
   chart.yAxis2.tickFormat(d3.format(',.1f'));
   chart.xAxis.tickValues(xticks)
              .ticks(xticks.length)
-             .tickFormat(function (d) {console.log(d); ans = xlabels[xvals.indexOf(d)]; if(ans) {return ans}; return d;});
+             .tickFormat(function (d) {ans = xlabels[xvals.indexOf(d)]; if(ans) {return ans}; return d;});
   chart.interpolate('%s');
   chart.tooltip.enabled(%s);
   %s
