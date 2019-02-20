@@ -38,7 +38,7 @@ nvmulti
 Overylay scatter, line, bar, and stacked area plots on one or two vertical axes.
 }
 \examples{
-area = nv_area(cbind(seq(nrow(iris)), iris[, -5]))
+area = nv_area(as.matrix(cbind(seq(nrow(iris)), iris[, -5])))
 total = nv_coords(x=seq(nrow(iris)), y=apply(iris[, -5], 1, sum), type="line", key="TOTAL")
 print(nvmulti(area, total, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
 }
