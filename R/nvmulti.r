@@ -82,6 +82,9 @@ nv_area = function(x, yAxis=1)
 #' @param col optional colors, one for each series
 #' @param xformat function that converts numeric x-axis values to text
 #' @param xticks optional numeric vector of x tick locations
+#' @param xlab a title for the x axis
+#' @param ylab a title for the primary y axis
+#' @param ylab_right a title for the secondary (right) y axis
 #' @importFrom jsonlite toJSON
 #' @examples
 #' area = nv_area(as.matrix(cbind(seq(nrow(iris)), iris[, -5])))
@@ -89,9 +92,10 @@ nv_area = function(x, yAxis=1)
 #' print(nvmulti(area, total, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
 #' @export
 nvmulti = function(..., tooltip=FALSE, guideline=TRUE, 
-interpolate=c("linear", "step", "basis", "step-before", "step-after", "bundle", "cardinal", "monotone"),
-xformat = function(x) sprintf("%d", x),
-xticks, col, xlim, ylim1, ylim2, options="")
+  interpolate=c("linear", "step", "basis", "step-before", "step-after", "bundle", "cardinal", "monotone"),
+  xlab="", ylab="", ylab_right="",
+  xformat = function(x) sprintf("%d", x),
+  xticks, col, xlim, ylim1, ylim2, options="")
 {
   interpolate = match.arg(interpolate)
   tooltip = ifelse(tooltip, "true", "false")
@@ -140,9 +144,10 @@ nv.addGraph(function() {
   var chart = nv.models.multiChart()
                 .useInteractiveGuideline(%s)
                 .color(%s);
-  chart.yAxis1.tickFormat(d3.format(',.1f'));
-  chart.yAxis2.tickFormat(d3.format(',.1f'));
+  chart.yAxis1.axisLabel('%s').tickFormat(d3.format(',.1f'));
+  chart.yAxis2.axisLabel('%s').tickFormat(d3.format(',.1f'));
   chart.xAxis.tickValues(xticks)
+             .axisLabel('%s')
              .ticks(xticks.length)
              .tickFormat(function (d) {ans = xlabels[xvals.indexOf(d)]; if(ans) {return ans}; return d;});
   chart.interpolate('%s');
@@ -153,6 +158,6 @@ nv.addGraph(function() {
       .call(chart);
   nv.utils.windowResize(chart.update);
   return chart;
-});\n", data, guideline, toJSON(col), interpolate, tooltip, options)
+});\n", data, guideline, toJSON(col), ylab, ylab_right, xlab, interpolate, tooltip, options)
   nvd3(program)
 }

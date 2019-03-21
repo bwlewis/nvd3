@@ -7,8 +7,9 @@ Overylay scatter, line, bar, and stacked area plots on one or two vertical axes.
 \usage{
 nvmulti(..., tooltip = FALSE, guideline = TRUE, interpolate = c("linear",
   "step", "basis", "step-before", "step-after", "bundle", "cardinal",
-  "monotone"), xformat = function(x) sprintf("\%d", x), xticks, col, xlim,
-  ylim1, ylim2, options = "")
+  "monotone"), xlab = "", ylab = "", ylab_right = "",
+  xformat = function(x) sprintf("\%d", x), xticks, col, xlim, ylim1, ylim2,
+  options = "")
 }
 \arguments{
 \item{...}{\code{nv_coords}, \code{nv_bar}, and/or \code{nv_area} objects to plot.}
@@ -18,6 +19,12 @@ nvmulti(..., tooltip = FALSE, guideline = TRUE, interpolate = c("linear",
 \item{guideline}{set to TRUE to display mouse hover summary of all series}
 
 \item{interpolate}{d3.js plot interpolation option}
+
+\item{xlab}{a title for the x axis}
+
+\item{ylab}{a title for the primary y axis}
+
+\item{ylab_right}{a title for the secondary (right) y axis}
 
 \item{xformat}{function that converts numeric x-axis values to text}
 
