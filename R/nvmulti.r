@@ -144,8 +144,8 @@ nv.addGraph(function() {
   var chart = nv.models.multiChart()
                 .useInteractiveGuideline(%s)
                 .color(%s);
-  chart.yAxis1.axisLabel('%s').tickFormat(d3.format(',.1f'));
-  chart.yAxis2.axisLabel('%s').tickFormat(d3.format(',.1f'));
+  chart.yAxis1.axisLabel('%s').tickFormat(d3.format(',.2f'));
+  chart.yAxis2.axisLabel('%s').tickFormat(d3.format(',.2f'));
   chart.xAxis.tickValues(xticks)
              .axisLabel('%s')
              .ticks(xticks.length)
