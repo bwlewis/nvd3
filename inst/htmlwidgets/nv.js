@@ -26,13 +26,10 @@ HTMLWidgets.widget(
   }
 })
 
-
 var Widget = Widget || {};
 Widget.nv = function(w, h)
 {
   var _this = this;
-console.log("NVD3 DEBUG");
-THIS=this;
 
   _this.init = function (el, width, height)
   {
@@ -50,8 +47,6 @@ THIS=this;
  */
   _this.run = function(x)
   {
-// DEBUG
-THIS.program = x.program;
     eval(x.program);
   }
 };
