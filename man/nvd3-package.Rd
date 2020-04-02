@@ -2,8 +2,8 @@
 % Please edit documentation in R/package.r
 \docType{package}
 \name{nvd3-package}
-\alias{nvd3}
 \alias{nvd3-package}
+\alias{nvd3}
 \title{Basic interactive plots using nvd3.js and htmlwidgets.}
 \description{
 Basic interactive plots using nvd3.js and htmlwidgets.
@@ -19,4 +19,3 @@ library("shiny")
 \references{
 \url{http://nvd3.org}
 }
-

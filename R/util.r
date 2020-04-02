@@ -65,11 +65,12 @@ dftab = function(x)
 #' @param height Widget height
 #' @param width Widget width
 #' @param program JavaScript program to draw plot
+#' @param elementId option widget element DOM ID
 #' @param ... Optional additional parameters passed to the rendering code.
 #' @return An HTML widget object
 #' @importFrom htmlwidgets createWidget
 #'
-nvd3 <- function(program, height=NULL, width=NULL, ...)
+nvd3 <- function(program, height=NULL, width=NULL, elementId=NULL, ...)
 {
   x <- list(program=program)
   additional_args <- list(...)
@@ -81,5 +82,6 @@ nvd3 <- function(program, height=NULL, width=NULL, ...)
     width = width,
     height = height,
     htmlwidgets::sizingPolicy(padding = 0, browser.fill = TRUE),
+    elementId = elementId,
     package = "nvd3")
 }

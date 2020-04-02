@@ -22,4 +22,3 @@ When \code{x} is a matrix, its row names will be used to identify
   bars. However, column names are not yet supported to identify grouped
   sets of bars which instead will be numbered in order.
 }
-

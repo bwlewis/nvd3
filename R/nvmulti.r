@@ -85,6 +85,7 @@ nv_area = function(x, yAxis=1)
 #' @param xlab a title for the x axis
 #' @param ylab a title for the primary y axis
 #' @param ylab_right a title for the secondary (right) y axis
+#' @param elementId optional DOM ID
 #' @importFrom jsonlite toJSON
 #' @examples
 #' area = nv_area(as.matrix(cbind(seq(nrow(iris)), iris[, -5])))
@@ -95,7 +96,7 @@ nvmulti = function(..., tooltip=FALSE, guideline=TRUE,
   interpolate=c("linear", "step", "basis", "step-before", "step-after", "bundle", "cardinal", "monotone"),
   xlab="", ylab="", ylab_right="",
   xformat = function(x) sprintf("%d", x),
-  xticks, col, xlim, ylim1, ylim2, options="")
+  xticks, col, xlim, ylim1, ylim2, options="", elementId=NULL)
 {
   interpolate = match.arg(interpolate)
   tooltip = ifelse(tooltip, "true", "false")
@@ -159,5 +160,5 @@ nv.addGraph(function() {
   nv.utils.windowResize(chart.update);
   return chart;
 });\n", data, guideline, toJSON(col), ylab, ylab_right, xlab, interpolate, tooltip, options)
-  nvd3(program)
+  nvd3(program, elementId=elementId)
 }

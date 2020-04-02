@@ -22,4 +22,3 @@ nv_coords(x, y, key = "data", yAxis = 1, type = c("scatter", "line"))
 nv_coords
 Define a scatter or line plot object for use with nvmulti plots.
 }
-

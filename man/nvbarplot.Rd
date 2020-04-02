@@ -4,10 +4,25 @@
 \alias{nvbarplot}
 \title{nv barplot}
 \usage{
-nvbarplot(height, space = 0.1, names.arg = NULL, beside = FALSE,
-  horiz = FALSE, col = NULL, xlab = NULL, ylab = NULL, axes = TRUE,
-  axisnames = TRUE, xaxt = "s", yaxt = "s", rotateLabels = 0,
-  showControls = TRUE, tickNumFormat = ",.1f", ...)
+nvbarplot(
+  height,
+  space = 0.1,
+  names.arg = NULL,
+  beside = FALSE,
+  horiz = FALSE,
+  col = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  axes = TRUE,
+  axisnames = TRUE,
+  xaxt = "s",
+  yaxt = "s",
+  rotateLabels = 0,
+  showControls = TRUE,
+  tickNumFormat = ",.1f",
+  elementId = NULL,
+  ...
+)
 }
 \arguments{
 \item{height}{either a data.frame, vector or matrix of values describing the bars which
@@ -59,6 +74,8 @@ drawn horizontally with the first at the bottom.}
 
 \item{tickNumFormat}{format numeric tick labels using a d3.format string (d3.js)}
 
+\item{elementId}{optional DOM ID}
+
 \item{...}{optional additional named plot options passed directly to nvd3.js (see examples)}
 }
 \value{
@@ -68,4 +85,3 @@ An htmlwidget object that is displayed using the object's show or print method.
 \description{
 nv barplot
 }
-

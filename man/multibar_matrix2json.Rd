@@ -15,4 +15,3 @@ A custom JSON string suitable for nvd3 multibar plotting
 \description{
 Prepare a barplot matrix for nvd3
 }
-

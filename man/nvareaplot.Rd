@@ -4,10 +4,20 @@
 \alias{nvareaplot}
 \title{nv stacked area plot}
 \usage{
-nvareaplot(x, nxticks = 10, xticklabels = NULL, ytickformat = ",.1f",
-  interpolate = c("step", "linear", "basis", "step-before", "step-after",
-  "bundle", "cardinal", "monotone"), controls = FALSE, xlim, ylim, tooltip,
-  options)
+nvareaplot(
+  x,
+  nxticks = 10,
+  xticklabels = NULL,
+  ytickformat = ",.1f",
+  interpolate = c("step", "linear", "basis", "step-before", "step-after", "bundle",
+    "cardinal", "monotone"),
+  controls = FALSE,
+  xlim,
+  ylim,
+  tooltip,
+  options,
+  elementId = NULL
+)
 }
 \arguments{
 \item{x}{a data frame with at least two columns whose first column contains
@@ -31,6 +41,8 @@ that converts x-axis values to text, or a vector of labels as long as \code{nxti
 \item{tooltip}{an optional character vector with as many entries as \code{x} has rows, the associated entry is displayed when the user's mouse hovers over the corresponding x-xaxis value (assumes that \code{x} has distinct x-axis values). The character values may be formatted with HTML formatting.}
 
 \item{options}{optional additional JavaScript options passed directly to nvd3.js.}
+
+\item{elementId}{optional widget DOM ID}
 }
 \value{
 An htmlwidget object that is displayed using the object's show or print method.
@@ -49,4 +61,3 @@ nvareaplot(stackedArea, xticklabels=function(x)
              format(as.POSIXct(x, origin="1970-1-1"), "\%Y-\%m-\%d"))
 
 }
-

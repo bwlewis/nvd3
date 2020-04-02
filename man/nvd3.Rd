@@ -4,7 +4,7 @@
 \alias{nvd3}
 \title{Render generic nvd3 plots}
 \usage{
-nvd3(program, height = NULL, width = NULL, ...)
+nvd3(program, height = NULL, width = NULL, elementId = NULL, ...)
 }
 \arguments{
 \item{program}{JavaScript program to draw plot}
@@ -12,6 +12,8 @@ nvd3(program, height = NULL, width = NULL, ...)
 \item{height}{Widget height}
 
 \item{width}{Widget width}
+
+\item{elementId}{option widget element DOM ID}
 
 \item{...}{Optional additional parameters passed to the rendering code.}
 }
@@ -21,4 +23,3 @@ An HTML widget object
 \description{
 Render generic nvd3 plots
 }
-

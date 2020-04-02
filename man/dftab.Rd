@@ -20,4 +20,3 @@ The data frame must contain at least one factor and one numeric variable, and a 
   at most three variables. In the case of two factor variables, the first one defines the x-axis
   barplot groups and the 2nd one the within-bar groups.
 }
-

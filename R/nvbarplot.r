@@ -34,6 +34,7 @@
 #' @param rotateLabels axis text rotation in degrees
 #' @param showControls set to \code{TRUE} to display interactive controls
 #' @param tickNumFormat format numeric tick labels using a d3.format string (d3.js)
+#' @param elementId optional DOM ID
 #' @param ... optional additional named plot options passed directly to nvd3.js (see examples)
 #' @return
 #' An htmlwidget object that is displayed using the object's show or print method.
@@ -43,7 +44,7 @@
 nvbarplot = function(height, space = 0.1, names.arg = NULL, beside = FALSE,
              horiz = FALSE, col = NULL, xlab = NULL, ylab = NULL,
              axes = TRUE, axisnames = TRUE, xaxt = 's', yaxt = 's',
-             rotateLabels=0, showControls=TRUE, tickNumFormat=",.1f", ...)
+             rotateLabels=0, showControls=TRUE, tickNumFormat=",.1f", elementId=NULL, ...)
 {
   if(is.data.frame(height)) height = dftab(height)
   if(!is.matrix(height)) {
@@ -99,5 +100,5 @@ nv.addGraph(function() {
   return chart;
 });", data, chart, options, tickNumFormat)
 
-  nvd3(program)
+  nvd3(program, elementId=elementId)
 }

@@ -5,11 +5,24 @@
 \title{nvmulti
 Overylay scatter, line, bar, and stacked area plots on one or two vertical axes.}
 \usage{
-nvmulti(..., tooltip = FALSE, guideline = TRUE, interpolate = c("linear",
-  "step", "basis", "step-before", "step-after", "bundle", "cardinal",
-  "monotone"), xlab = "", ylab = "", ylab_right = "",
-  xformat = function(x) sprintf("\%d", x), xticks, col, xlim, ylim1, ylim2,
-  options = "")
+nvmulti(
+  ...,
+  tooltip = FALSE,
+  guideline = TRUE,
+  interpolate = c("linear", "step", "basis", "step-before", "step-after", "bundle",
+    "cardinal", "monotone"),
+  xlab = "",
+  ylab = "",
+  ylab_right = "",
+  xformat = function(x) sprintf("\%d", x),
+  xticks,
+  col,
+  xlim,
+  ylim1,
+  ylim2,
+  options = "",
+  elementId = NULL
+)
 }
 \arguments{
 \item{...}{\code{nv_coords}, \code{nv_bar}, and/or \code{nv_area} objects to plot.}
@@ -39,6 +52,8 @@ nvmulti(..., tooltip = FALSE, guideline = TRUE, interpolate = c("linear",
 \item{ylim2}{an optional numeric vector of two values of lower and upper right y-axis limits}
 
 \item{options}{advanced JavaScript options}
+
+\item{elementId}{optional DOM ID}
 }
 \description{
 nvmulti
@@ -49,4 +64,3 @@ area = nv_area(as.matrix(cbind(seq(nrow(iris)), iris[, -5])))
 total = nv_coords(x=seq(nrow(iris)), y=apply(iris[, -5], 1, sum), type="line", key="TOTAL")
 print(nvmulti(area, total, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
 }
-

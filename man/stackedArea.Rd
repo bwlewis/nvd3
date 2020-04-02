@@ -4,7 +4,9 @@
 \name{stackedArea}
 \alias{stackedArea}
 \title{Stacked Area Plot Example Data}
-\format{A data frame.}
+\format{
+A data frame.
+}
 \source{
 \url{http://nvd3.org/examples/stackedArea.html}.
 }
@@ -15,4 +17,3 @@ data(stackedArea)
 Stacked Area Plot Example Data
 }
 \keyword{datasets}
-
