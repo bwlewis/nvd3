@@ -3,8 +3,8 @@ Type: Package
 Title: NVD3 D3-based plots
 Description: Create basic, interactive scatter plots, bar plots, and more
     using the 'nvd3.js' JavaScript plotting library (<https://nvd3.org>).
-Version: 0.0.3
-Date: 2020-05-01
+Version: 0.0.4
+Date: 2020-05-21
 Authors@R: c(
     person("B. W.", "Lewis", role=c("aut","cre"), email="blewis@illposed.net"),
     person(given="nvd3.js authors", role="cph", comment="nvd3.js JavaScript library"),
