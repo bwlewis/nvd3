@@ -12581,7 +12581,8 @@ nv.models.multiChart = function() {
               for(var i=0, il=charts.length; i < il; i++){
                 var chart = charts[i];
                 try {
-                  chart.highlightPoint(serieIndex, pointIndex, b);
+// Removed point highlight for now until their positions can be computed correctly
+//                  chart.highlightPoint(serieIndex, pointIndex, b);
                 } catch(e){}
               }
             }
@@ -12618,6 +12619,7 @@ nv.models.multiChart = function() {
                             yAxis: series.yAxis == 2 ? yAxis2 : yAxis1
                         });
                     });
+allData.reverse();
 
                     var defaultValueFormatter = function(d,i) {
                         var yAxis = allData[i].yAxis;
