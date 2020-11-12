@@ -17,4 +17,5 @@ plotting functions without needing to explicitly update the R package.
 This is currently an early-stage implementation and I only have two plot
 types, a bar plot (nvbarplot) and an area plot (nvareaplot). The structure
 of this package makes it really simple however to add new plot types, so
-more will follow.
+more could follow. But nvd3 is a rather broken and unmaintained plotting
+library, so maybe not.
