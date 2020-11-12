@@ -20,7 +20,6 @@ nvbarplot(
   rotateLabels = 0,
   showControls = TRUE,
   tickNumFormat = ",.1f",
-  elementId = NULL,
   ...
 )
 }
@@ -73,8 +72,6 @@ drawn horizontally with the first at the bottom.}
 \item{showControls}{set to \code{TRUE} to display interactive controls}
 
 \item{tickNumFormat}{format numeric tick labels using a d3.format string (d3.js)}
-
-\item{elementId}{optional DOM ID}
 
 \item{...}{optional additional named plot options passed directly to nvd3.js (see examples)}
 }

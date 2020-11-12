@@ -12,7 +12,6 @@
 #' @param ylim an optional numeric vector of two values of lower and upper y-axis limits
 #' @param tooltip an optional character vector with as many entries as \code{x} has rows, the associated entry is displayed when the user's mouse hovers over the corresponding x-xaxis value (assumes that \code{x} has distinct x-axis values). The character values may be formatted with HTML formatting.
 #' @param options optional additional JavaScript options passed directly to nvd3.js.
-#' @param elementId optional widget DOM ID
 #' @return
 #' An htmlwidget object that is displayed using the object's show or print method.
 #' (If you don't see your widget plot, try printing it with the \code{print} function.)
@@ -20,11 +19,11 @@
 #' @examples
 #' data("stackedArea", package="nvd3")
 #' head(stackedArea)  # note POSIX date format in 1st column
-#' nvareaplot(stackedArea)
+#' nvd3(nvareaplot(stackedArea))
 #'
 #' # Now plot with a better x-axis format:
-#' nvareaplot(stackedArea, xticklabels=function(x)
-#'              format(as.POSIXct(x, origin="1970-1-1"), "%Y-%m-%d"))
+#' nvd3(nvareaplot(stackedArea, xticklabels=function(x)
+#'              format(as.POSIXct(x, origin="1970-1-1"), "%Y-%m-%d")))
 #'
 #' @export
 nvareaplot = function(x,
@@ -32,7 +31,7 @@ nvareaplot = function(x,
   xticklabels=NULL,
   ytickformat=",.1f",
   interpolate=c("step", "linear", "basis", "step-before", "step-after", "bundle", "cardinal", "monotone"),
-  controls=FALSE, xlim, ylim, tooltip, options, elementId=NULL)
+  controls=FALSE, xlim, ylim, tooltip, options)
 {
   if(nrow(x) != length(unique(x[[1]]))) warning("non-unique entries in the x-axis values from first column of x (consider adding columns to represent the extra values)")
   x = x[order(x[[1]]),]
@@ -91,7 +90,7 @@ var chart = nv.models.stackedAreaChart()
                   .rightAlignYAxis(true)
                   .showControls(%s)
                   .clipEdge(true);", interpolate, controls)
-  program = sprintf("
+sprintf("
 %s
 nv.addGraph(function() {
   %s%s
@@ -106,6 +105,4 @@ nv.addGraph(function() {
   nv.utils.windowResize(chart.update);
   return chart;
 });", data, chart, options, ytickformat)
-
-  nvd3(program, elementId=elementId)
 }

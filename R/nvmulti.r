@@ -85,18 +85,18 @@ nv_area = function(x, yAxis=1)
 #' @param xlab a title for the x axis
 #' @param ylab a title for the primary y axis
 #' @param ylab_right a title for the secondary (right) y axis
-#' @param elementId optional DOM ID
 #' @importFrom jsonlite toJSON
 #' @examples
 #' area = nv_area(as.matrix(cbind(seq(nrow(iris)), iris[, -5])))
 #' total = nv_coords(x=seq(nrow(iris)), y=apply(iris[, -5], 1, sum), type="line", key="TOTAL")
-#' print(nvmulti(area, total, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
+#' p = nvmulti(area, total, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000"))
+#' nvd3(p)
 #' @export
 nvmulti = function(..., tooltip=FALSE, guideline=TRUE, 
   interpolate=c("linear", "step", "basis", "step-before", "step-after", "bundle", "cardinal", "monotone"),
   xlab="", ylab="", ylab_right="",
   xformat = function(x) sprintf("%d", x),
-  xticks, col, xlim, ylim1, ylim2, options="", elementId=NULL)
+  xticks, col, xlim, ylim1, ylim2, options="")
 {
   interpolate = match.arg(interpolate)
   tooltip = ifelse(tooltip, "true", "false")
@@ -139,7 +139,7 @@ nvmulti = function(..., tooltip=FALSE, guideline=TRUE,
   options = sprintf("%s;chart.yDomain2(%s);", options, toJSON(ylim2))
   data = sprintf("var rdata=%s;\nvar xticks=%s;\nvar xvals=%s;\nvar xlabels=%s;\n",
              toJSON(objects, auto_unbox=TRUE), toJSON(xticks, auto_unbox=TRUE), toJSON(xvals), toJSON(xlabels))
-  program = sprintf("
+sprintf("
 %s
 nv.addGraph(function() {
   var chart = nv.models.multiChart()
@@ -160,5 +160,4 @@ nv.addGraph(function() {
   nv.utils.windowResize(chart.update);
   return chart;
 });\n", data, guideline, toJSON(col), ylab, ylab_right, xlab, interpolate, tooltip, options)
-  nvd3(program, elementId=elementId)
 }

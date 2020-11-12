@@ -20,8 +20,7 @@ nvmulti(
   xlim,
   ylim1,
   ylim2,
-  options = "",
-  elementId = NULL
+  options = ""
 )
 }
 \arguments{
@@ -52,8 +51,6 @@ nvmulti(
 \item{ylim2}{an optional numeric vector of two values of lower and upper right y-axis limits}
 
 \item{options}{advanced JavaScript options}
-
-\item{elementId}{optional DOM ID}
 }
 \description{
 nvmulti
@@ -62,5 +59,6 @@ Overylay scatter, line, bar, and stacked area plots on one or two vertical axes.
 \examples{
 area = nv_area(as.matrix(cbind(seq(nrow(iris)), iris[, -5])))
 total = nv_coords(x=seq(nrow(iris)), y=apply(iris[, -5], 1, sum), type="line", key="TOTAL")
-print(nvmulti(area, total, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000")))
+p = nvmulti(area, total, col=c("#8dd3c7", "#ffffb3", "#fb8072", "#80b1d3", "#000000"))
+nvd3(p)
 }

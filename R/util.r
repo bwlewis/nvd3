@@ -69,7 +69,7 @@ dftab = function(x)
 #' @param ... Optional additional parameters passed to the rendering code.
 #' @return An HTML widget object
 #' @importFrom htmlwidgets createWidget
-#'
+#' @export
 nvd3 <- function(program, height=NULL, width=NULL, elementId=NULL, ...)
 {
   x <- list(program=program)
