@@ -739,7 +739,7 @@ nv.models.tooltip = function() {
             var pos = position(),
                 gravityOffset = calcGravityOffset(pos),
                 left = pos.left + gravityOffset.left,
-                top = pos.top + gravityOffset.top;
+                top = pos.top + gravityOffset.top + window.scrollY;
 
             // delay hiding a bit to avoid flickering
             if (hidden) {
@@ -12556,12 +12556,12 @@ nv.models.multiChart = function() {
             }
 
             function highlightPoint(serieIndex, pointIndex, b){
-              for(var i=0, il=charts.length; i < il; i++){
-                var chart = charts[i];
-                try {
-                  chart.highlightPoint(serieIndex, pointIndex, b);
-                } catch(e){}
-              }
+//              for(var i=0, il=charts.length; i < il; i++){
+//                var chart = charts[i];
+//                try {
+//                  chart.highlightPoint(serieIndex, pointIndex, b);
+//                } catch(e){}
+//              }
             }
 
             if(useInteractiveGuideline){
