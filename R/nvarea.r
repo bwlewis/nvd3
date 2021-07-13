@@ -77,7 +77,7 @@ nvareaplot = function(x,
     names(tooltip) = as.character(x[[1]])
     tooltip = toJSON(tooltip, auto_unbox=TRUE)
   }
-  data = sprintf("var rdata=%s;\nvar xticks=%s;\nvar xtick_index=%s;\nvar xlim=%s\nvar ylim=%s;\nvar tooltip=%s;\n",
+  data = sprintf("var rdata=%s;\nvar xticks=%s;\nvar xtick_index=%s;\nvar xlim=%s;\nvar ylim=%s;\nvar tooltip=%s;\n",
      toJSON(a), toJSON(xticks, auto_unbox=TRUE), toJSON(xtick_index), toJSON(xlim, auto_unbox=TRUE),
      toJSON(ylim, auto_unbox=TRUE), tooltip)
   chart = sprintf("
